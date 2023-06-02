@@ -71,10 +71,6 @@ export class MostrarClasificacionAlarmaComponent implements OnInit {
     )
   }
 
-  pruebas(cosa) {
-    console.log(cosa);
-  }
-
   postAux() {
     let aux;
     aux = {
@@ -101,16 +97,12 @@ export class MostrarClasificacionAlarmaComponent implements OnInit {
       },
       error => {
         this.alertError();
-        console.log(aux.id_tipo_alarma)
-        console.log(aux.id_terminal);
       }
     )
   }
 
   borrarRecurso(objeto: IDispositivosAuxiliaresTerminal, id: string) {
-    console.log(id)
     let contenedor = document.getElementById(id);
-    console.log(objeto.id_tipo_alarma.nombre)
     contenedor.removeChild(document.getElementById(objeto.id_tipo_alarma.nombre)) // Aqui borramos el bloque del elemento que acabamos de borrar
     this.auxiliares.eliminarDispositivoAuxiliarTerminal(objeto).subscribe(
       oj => {

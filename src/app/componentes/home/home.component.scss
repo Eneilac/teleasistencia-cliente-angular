@@ -84,8 +84,6 @@ abbr {
 
 .imagenTecnologia {
   height: 40px;
-  margin: 0 20px;
-  width: auto;
 }
 
 .divTitulosDesarrollador .imagenDesarrollador {
@@ -104,6 +102,10 @@ abbr {
   display: inline-block;
   align-items: center;
   justify-content: center;
+}
+
+img {
+  max-width: 100%;
 }
 
 @media (min-width: 40em) {

@@ -6,6 +6,7 @@ import {OrdenacionTablasService} from "../../../servicios/ordenacion-tablas.serv
 import {AuthService} from "../../../servicios/auth.service";
 import {CargaAlarmaService} from "../../../servicios/alarmas/carga-alarma.service";
 import {IAlarma} from "../../../interfaces/i-alarma";
+import {Spinner} from "../../../clases/spinner";
 
 
 @Component({
@@ -27,11 +28,26 @@ export class ListaAlarmasComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.auth.isAdmin();
-    this.alarmasDelDia = this.route.snapshot.data['alarmas'];
+    this.alarmasDelDia = this.route.snapshot.data['alarmas'].sort(this.ordenarAlarmas);
+
     this.titleService.setTitle('Alarmas');
     this.fecha = + this.fechaToday.getDate() + ' de ' + this.getNombreMes(this.fechaToday.getMonth()) + ' de '
       + this.fechaToday.getFullYear();
 
+  }
+  ordenarAlarmas(a: IAlarma, b:IAlarma):number{
+    if(a.estado_alarma == "Abierta" && b.estado_alarma == "Cerrada"){
+      return -1;
+    }
+    if(b.estado_alarma == "Abierta" && a.estado_alarma == "Cerrada"){
+      return 1;
+    }
+    if(a.fecha_registro > b.fecha_registro){
+      return 1;
+    }
+    if(a.fecha_registro < b.fecha_registro){
+      return -1;
+    }
   }
 
   ordenacionTabla(indice: number, tipo: string){
@@ -47,23 +63,34 @@ export class ListaAlarmasComponent implements OnInit {
   buscarPorFecha(event) {
     let fechaSeparada = event.split('-');
 
-    this.cargarAlarmas.getAlarmasPorFecha(event).subscribe(
-      e => {
-        const datos: any = e;
-        this.inputFechaBusqueda = event;
-        if (e) {
-          this.alarmasDelDia = datos;
-          this.fecha = + fechaSeparada[2] + ' de '
-            + this.getNombreMesActualizarFecha(fechaSeparada[1]) + ' de '
-            + fechaSeparada[0];
-          if(datos && datos.length > 0) {
-            this.alarmasDelDia = this.alarmasDelDia.filter(el => {
-              return el;
-            });
+    if (event != undefined && event != ""){
+      Spinner.mostrarSpiner();
+      this.cargarAlarmas.getAlarmasPorFecha(event).subscribe(
+        e => {
+          const datos: any = e;
+          this.inputFechaBusqueda = event;
+          if (e) {
+            this.alarmasDelDia = datos.sort(this.ordenarAlarmas);
+            this.fecha = + fechaSeparada[2] + ' de '
+              + this.getNombreMesActualizarFecha(fechaSeparada[1]) + ' de '
+              + fechaSeparada[0];
+            if(datos && datos.length > 0) {
+              this.alarmasDelDia = this.alarmasDelDia.filter(el => {
+                return el;
+              });
+            }
           }
+          document.getElementById("campoBusqueda").focus();
+          Spinner.ocultarSpinner();
+        },
+        ()=>{
+          Spinner.ocultarSpinner();
+        },
+        () => {
+          Spinner.ocultarSpinner();
         }
-        document.getElementById("campoBusqueda").focus();
-      });
+        );
+    }
   }
   // Método para conseguir el nombre del mes usando el número que nos devuelve la función getMonth()
   getNombreMes (numMes: number) {

@@ -34,7 +34,6 @@ export class CrearUserComponent implements OnInit {
     this.cargaGrupo.getGroup().subscribe(
       resp=>{
       this.grupos  = resp
-      console.log(this.grupos)
       }
     )
     this.confirmpassword="";
@@ -52,7 +51,6 @@ export class CrearUserComponent implements OnInit {
 
   nuevoUser(): void {
     const myFormData = new FormData();
-    console.log(this.formCrearU)
     for ( let key in  this.formCrearU.controls) {
       myFormData.append(key, this.formCrearU.get(key).value);
     }

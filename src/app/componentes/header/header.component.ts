@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   public teleoperador: number
   public clasificacionRecursos: IClasificacioRecurso[] | []; // Esta variable la utilizaremos para obtener la clasificacion de recursos que mostraremos en el apartado de Recursos
 
-  public cookiesAceptadas: boolean;
+  public cookiesAceptadas: string;
 
   isAdmin: boolean;
 
@@ -43,7 +43,8 @@ export class HeaderComponent implements OnInit, DoCheck {
         error => console.log(error),
       )
     }
-    this.cookiesAceptadas=true; //esto desactiva el popput de cookies
+    this.cookiesAceptadas=localStorage.getItem('cookies');
+    //localStorage.removeItem('cookies'); esto resetearia las cookies
   }
   //Compruebo si esta login para ocultar el navbar
 
@@ -63,13 +64,13 @@ export class HeaderComponent implements OnInit, DoCheck {
       listaClasificacion => {
         this.clasificacionRecursos = listaClasificacion;
       },
-      error => console.log(error),
-      () => console.log('Fin de observable')
+      error => console.log(error)
     )}
 
 
   aceptarCookies(): void{
-    this.cookiesAceptadas=true;
+    localStorage.setItem('cookies','accept');
+    window.location.reload()
   }
 
 }

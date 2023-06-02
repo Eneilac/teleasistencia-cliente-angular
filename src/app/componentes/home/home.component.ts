@@ -1,7 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {CargaDesarrolladorTecnologiaService} from "../../servicios/carga-desarrollador-tecnologia.service";
+
+
+
+
 import {IConvocatoria, IDesarrollador, IDesarrolladorTecnologia} from "../../interfaces/i-desarrollador-tecnologia";
+
 
 @Component({
   selector: 'app-home',
@@ -26,6 +31,9 @@ export class HomeComponent implements OnInit {
     this.cargaDesarrolladorTecnologia.getDesarrolladorTecnologia().subscribe(
       e=>{
         this.desarrolladores = e;
+
+
+
         var alumnos: IDesarrolladorTecnologia[];
         var profesores: IDesarrolladorTecnologia[];
         alumnos = [];
@@ -41,6 +49,7 @@ export class HomeComponent implements OnInit {
         });
         this.alumnos = alumnos;
         this.profesores = profesores;
+
       }
     )
   }

@@ -103,10 +103,6 @@ export class EditMostrarClasificacionAlarmaComponent implements OnInit {
     )
   }
 
-  pruebas(cosa) {
-    console.log(cosa);
-  }
-
   postAux() {
     this.cargaPaciente.getPaciente(this.cargaPaciente.idPacienteEditar).subscribe(
       paciente =>{
@@ -135,8 +131,6 @@ export class EditMostrarClasificacionAlarmaComponent implements OnInit {
           },
           error => {
             this.alertError();
-            console.log(aux.id_tipo_alarma)
-            console.log(aux.id_terminal);
           }
         )
       }
@@ -145,9 +139,7 @@ export class EditMostrarClasificacionAlarmaComponent implements OnInit {
   }
 
   borrarRecurso(objeto: IDispositivosAuxiliaresTerminal, id: string) {
-    console.log(id)
     let contenedor = document.getElementById(id);
-    console.log(objeto.id_tipo_alarma.nombre)
     contenedor.removeChild(document.getElementById(objeto.id_tipo_alarma.nombre)) // Aqui borramos el bloque del elemento que acabamos de borrar
     this.auxiliares.eliminarDispositivoAuxiliarTerminal(objeto).subscribe(
       oj => {

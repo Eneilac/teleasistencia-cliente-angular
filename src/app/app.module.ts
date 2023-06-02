@@ -149,6 +149,12 @@ import { NgSelectModule} from "@ng-select/ng-select";
 import { CrearPersonaContactoComponent } from './componentes/personas-contacto/crear-persona-contacto/crear-persona-contacto.component';
 import { CrearDatosSanitariosComponent } from './componentes/datos-sanitario/crear-datos-sanitarios/crear-datos-sanitarios.component';
 import { MostrarCrearComponent } from './componentes/personas-contacto/mostrar-crear/mostrar-crear.component';
+
+
+import { BotonInfoAyudasComponent } from './componentes/boton-info-ayudas/boton-info-ayudas.component';
+
+
+
 import { NuevoTipoViviendaComponent } from './componentes/tipo-vivienda/nuevo-tipo-vivienda/nuevo-tipo-vivienda.component';
 import { DispositivosComponent } from './componentes/dispositivos/dispositivos.component';
 import { MostrarClasificacionAlarmaComponent } from './componentes/mostrar-clasificacion-alarma/mostrar-clasificacion-alarma.component';
@@ -159,12 +165,22 @@ import { EditarContactoComponent } from './componentes/personas-contacto/editar-
 import { MostrarEditarContactoComponent } from './componentes/personas-contacto/mostrar-editar-contacto/mostrar-editar-contacto.component';
 import { CrearEditarContactoComponent } from './componentes/personas-contacto/crear-editar-contacto/crear-editar-contacto.component';
 import { DispositivosEditarComponent } from './componentes/dispositivos-editar/dispositivos-editar.component';
+
 import { ModificarPasswordComponent } from './componentes/user/modificar-password/modificar-password.component';
 import { ModificarImagenUsuarioComponent } from './componentes/botones-modificar/modificar-imagen-usuario/modificar-imagen-usuario.component';
 import { ModificarPasswordUsuarioComponent } from './componentes/botones-modificar/modificar-password-usuario/modificar-password-usuario.component';
 import { TiposRecursosComunitariosComponent } from './componentes/alarma/tipos-recursos-comunitarios/tipos-recursos-comunitarios.component';
+
+import { UserAgendasAlarmasResueltasComponent } from './componentes/seguimiento_teleoperador/lista-seguimiento-teleoperador/user-agendas-alarmas-resueltas.component';
+import { ItemTeleoperadorComponent } from './componentes/seguimiento_teleoperador/item-teleoperador/item-teleoperador.component';
+import { ListaAlarmasResueltasComponent } from './componentes/seguimiento_teleoperador/lista-alarmas-resueltas/lista-alarmas-resueltas.component';
+import { ItemAgendasResueltasComponent } from './componentes/seguimiento_teleoperador/item-agendas-resueltas/item-agendas-resueltas.component';
+
+
+
 import { EditMostrarClasificacionAlarmaComponent } from './componentes/edit-mostrar-clasificacion-alarma/edit-mostrar-clasificacion-alarma.component';
 import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
+import { ItemAlarmasResueltasComponent } from './componentes/seguimiento_teleoperador/item-alarmas-resueltas/item-alarmas-resueltas.component';
 
 @NgModule({
   declarations: [
@@ -293,6 +309,11 @@ import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
     CrearPersonaContactoComponent,
     CrearDatosSanitariosComponent,
     MostrarCrearComponent,
+
+
+    BotonInfoAyudasComponent,
+
+
     NuevoTipoViviendaComponent,
     DispositivosComponent,
     MostrarClasificacionAlarmaComponent,
@@ -308,7 +329,12 @@ import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
     ModificarImagenUsuarioComponent,
     ModificarPasswordUsuarioComponent,
     TiposRecursosComunitariosComponent,
+    UserAgendasAlarmasResueltasComponent,
+    ItemTeleoperadorComponent,
+    ListaAlarmasResueltasComponent,
+    ItemAgendasResueltasComponent,
     EditMostrarClasificacionAlarmaComponent,
+    ItemAlarmasResueltasComponent,
   ],
     imports: [
         BrowserModule,
@@ -348,7 +374,7 @@ import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
     }
   ],
   bootstrap: [AppComponent]
-})
-
-export class AppModule {
+})export class AppModule {
 }
+
+

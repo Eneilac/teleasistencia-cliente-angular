@@ -49,7 +49,7 @@ export class ConexionWsService {
       Swal.close()
       this.alertExito(environment.fraseAlarmaAceptada)
     }
-    // si una alarma fue asignada ya se cierra el modal
+
     if (msg['action'] == 'alarm_auto_resolve') {
       Swal.close()
       this.alertExito(environment.fraseCerrarAlarmaVoluntario)

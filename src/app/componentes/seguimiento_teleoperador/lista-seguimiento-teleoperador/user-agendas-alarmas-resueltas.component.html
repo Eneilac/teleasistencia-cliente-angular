@@ -1,0 +1,46 @@
+<main class="text-center row p-0 m-0 justify-content-center">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Seguimiento Teleoperadores</li>
+      </ol>
+    </nav>
+    <h1 class="component-title">Seguimiento Teleoperadores</h1>
+    <div class="form-group mb-3">
+      <input id="campoBusqueda" type="text" class="form-control" placeholder="Busqueda..." [(ngModel)]="inputBusqueda">
+    </div>
+    <div class="table-responsive m-2">
+      <table id="tableList" class="table table-hover text-center">
+        <thead>
+        <tr class="table-purple">
+
+
+          <th class="ordenable" (click)="ordenacionTabla(0, 'string')" scope="col">Nombre <i class="fas fa-sort"></i>
+          </th>
+          <th class="ordenable" (click)="ordenacionTabla(1, 'string')" scope="col">Apellidos <i class="fas fa-sort"></i>
+          </th>
+          <th class="ordenable" (click)="ordenacionTabla(2, 'number')" scope="col">Alarmas Totales <i
+            class="fas fa-sort"></i></th>
+          <th class="ordenable" (click)="ordenacionTabla(3, 'string')" scope="col">Agendas Totales <i
+            class="fas fa-sort"></i></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr
+          *ngFor="let teleoperador of teleoperadores | filtroBusqueda: inputBusqueda | paginate: { itemsPerPage: elementosPaginacion, currentPage: numPaginacion }"
+          app-item-teleoperador [teleoperador]="teleoperador">
+        </tr>
+        </tbody>
+      </table>
+      <pagination-controls
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        responsive="true"
+        (pageChange)="numPaginacion = $event"></pagination-controls>
+    </div>
+  </div>
+
+</main>

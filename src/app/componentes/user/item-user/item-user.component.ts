@@ -74,7 +74,6 @@ export class ItemUserComponent implements OnInit {
     })
   }
   eliminarUsuario(ruta :string  ) : void{
-    console.log(this.user)
     this.cargaUsuario.eliminarUsuario(this.user).subscribe(
       e=>{
         this.router.navigateByUrl(ruta+'/borrado/'+this.user.id, {skipLocationChange: true}).then(() => {

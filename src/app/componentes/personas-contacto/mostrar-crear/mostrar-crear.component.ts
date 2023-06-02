@@ -191,7 +191,6 @@ export class MostrarCrearComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.formulario);
     if (this.formulario.invalid) {
       return;
     }

@@ -34,8 +34,6 @@ export class CargaCentroSanitarioService {
   }
 
   eliminarCentroSanitario(centroSanitario:ICentroSanitario): Observable<ICentroSanitario> {
-    console.log(centroSanitario);
-    console.log(centroSanitario.id);
     return this.http.delete<ICentroSanitario>(this.URL_SERVER_CENTROS_SANITARIOS + '/' + centroSanitario.id);
   }
 }

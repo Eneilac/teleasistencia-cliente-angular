@@ -161,9 +161,9 @@ export class ModificarCerrarAlarmaComponent implements OnInit {
   }
   obtenerIdPaciente() {
     if (this.paciente_ucr) {
-      return this.paciente_ucr.id_persona.id
+      return this.paciente_ucr.id
     }
-    return  this.alarma.id_terminal.id_titular.id_persona.id
+    return  this.alarma.id_terminal.id_titular.id
   }
   // funcion que obtiene el telefono fijo
 

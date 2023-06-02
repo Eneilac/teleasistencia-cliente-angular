@@ -33,8 +33,6 @@ export class CargaClasificacionAlarmaService {
   }
 
   eliminarClasificacionAlarma(clasificacionAlarma:IClasificacionAlarma): Observable<IClasificacionAlarma> {
-    console.log(clasificacionAlarma);
-    console.log(clasificacionAlarma.id);
     return this.http.delete<IClasificacionAlarma>(this.URL_SERVER_CLASIFICACIONES_ALARMAS + '/' + clasificacionAlarma.id);
   }
 }

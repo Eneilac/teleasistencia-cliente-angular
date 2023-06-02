@@ -51,7 +51,6 @@ export class CrearTipoSituacionComponent implements OnInit {
     tipo_situacion = {
       nombre: this.formulario.value.nombre
     }
-    console.log("tipo situacion -->" + tipo_situacion)
 
     this.cargaSituacion.nuevoTipoSituacion(tipo_situacion).subscribe(
       e => {

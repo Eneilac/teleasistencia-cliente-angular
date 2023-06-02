@@ -5,8 +5,7 @@ import {Title} from '@angular/platform-browser';
 import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
 import Swal from "sweetalert2";
 import {environment} from "../../../../environments/environment";
-
-
+import {Spinner} from "../../../clases/spinner";
 
 @Component({
   selector: 'app-modificar-direccion',
@@ -25,13 +24,14 @@ export class ModificarDireccionComponent implements OnInit {
     this.idDireccion = this.route.snapshot.params['id'];
     this.dire = this.route.snapshot.data['direccion'];
     this.titleService.setTitle('Modificar dirección ' + this.idDireccion);
-
-    console.log(this.titleService);
   }
 
   modificarDireccion(): void {
+    Spinner.mostrarSpiner();
     this.cargaDirecciones.modificarDireccion(this.dire).subscribe(
       e => {
+        setTimeout(() => {
+        }, 200);
         this.router.navigate(['/direcciones']);
         this.alertExito()
       },
@@ -59,6 +59,7 @@ export class ModificarDireccionComponent implements OnInit {
       icon: 'success',
       title: environment.fraseModificar,
     })
+    Spinner.ocultarSpinner();
   }
   //Toast para el alert indicando que hubo algún error en la operación
   alertError() :void {
@@ -78,7 +79,6 @@ export class ModificarDireccionComponent implements OnInit {
       icon: 'error',
       title: environment.fraseErrorModificar
     })
+    Spinner.ocultarSpinner();
   }
-
-
 }

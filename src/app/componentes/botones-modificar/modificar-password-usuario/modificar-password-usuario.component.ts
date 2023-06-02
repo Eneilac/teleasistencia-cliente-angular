@@ -40,7 +40,6 @@ export class ModificarPasswordUsuarioComponent implements OnInit {
 
   modificarUser(): void {
     const myFormData = new FormData();
-    console.log(this.formModificarU)
     for ( let key in  this.formModificarU.controls) {
       myFormData.append(key, this.formModificarU.get(key).value);
     }

@@ -93,7 +93,6 @@ export class AgendaComponent implements OnInit {
         this.inputFechaBusqueda = event;
         if (e) {
           this.agendasDelDia = datos;
-          console.log(fechaSeparada[1]);
           this.fechaString = +fechaSeparada[2] + ' de '
             + this.getNombreMesActualizarFecha(fechaSeparada[1]) + ' de '
             + fechaSeparada[0];

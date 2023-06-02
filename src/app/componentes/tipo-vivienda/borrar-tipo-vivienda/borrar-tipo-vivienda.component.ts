@@ -22,7 +22,6 @@ export class BorrarTipoViviendaComponent implements OnInit {
   borrarTipoVivienda(): void {
     this.cargaViviendas.borrarVivienda(this.tipo_vivienda).subscribe(
       e => {
-        console.log(this.tipo_vivienda);
         this.router.navigate(['/viviendas']);
       },
       error => {

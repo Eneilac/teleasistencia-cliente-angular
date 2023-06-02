@@ -311,6 +311,9 @@ import {
 import {AuthGuard} from "./guards/auth.guard";
 import {environment} from "../environments/environment";
 
+
+import {BotonInfoAyudasComponent} from "./componentes/boton-info-ayudas/boton-info-ayudas.component";
+
 import {
   CrearUserServicioComponent
 } from "./componentes/usuarios-del-servicio/crear-user-servicio/crear-user-servicio.component";
@@ -329,6 +332,7 @@ import {
 } from "./servicios/usuarios-del-servicio/carga-usuarios-del-servicio-resolve.service";
 import {DispositivosComponent} from "./componentes/dispositivos/dispositivos.component";
 
+
 import {ModificarPasswordComponent} from "./componentes/user/modificar-password/modificar-password.component";
 import {
   ModificarPasswordUsuarioComponent
@@ -344,9 +348,18 @@ import {
 } from "./servicios/cerrar-alarma/clasificacion-recursoscomunitarios-resolve.service";
 import {PersonasEnAlarmaResolveService} from "./servicios/persona-contacto-alarma/personas-en-alarma-resolve.service";
 
+import {
+  UserAgendasAlarmasResueltasComponent
+} from "./componentes/seguimiento_teleoperador/lista-seguimiento-teleoperador/user-agendas-alarmas-resueltas.component";
+import {ListaAgendasyAlarmasResueltasTotales} from "./servicios/lista-teleoperador-resolve.service";
+import {
+  ListaAlarmasResueltasComponent
+} from "./componentes/seguimiento_teleoperador/lista-alarmas-resueltas/lista-alarmas-resueltas.component";
+import {ListaAgendasyAlarmasResueltasResolveService} from "./servicios/lista-agendas-resueltas-resolve.service";
+
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
-  {path: 'inicio', canActivate: [AuthGuard], component: HomeComponent},
+  {path: 'inicio', component: HomeComponent},
   {
     path: 'recurso-comunitarios-personales',
     canActivate: [AuthGuard],
@@ -789,7 +802,6 @@ const routes: Routes = [
     resolve: {
       historico_agenda: DetalleHistoricoAgendaResolveService,
       agendas: ListaTodasAgendasResolveService,
-      teleoperadores: ListaUsersResolveService,
     }
   },
   {
@@ -1539,6 +1551,40 @@ const routes: Routes = [
     },
   },
   {
+
+    path:'boton_info_ayudas/:clave',
+    component:BotonInfoAyudasComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: null
+    },
+  },
+  {
+    path:'lista-seguimiento-teleoperador',
+    component:UserAgendasAlarmasResueltasComponent,
+    canActivate: [AuthGuard],
+    data:{
+      role:[environment.admins]
+    },
+    resolve: {
+      agendasyAlarmasResueltasTotales: ListaAgendasyAlarmasResueltasTotales
+    }
+  },
+  {
+    path:'lista-seguimiento-teleoperador/:id',
+    component:ListaAlarmasResueltasComponent,
+    canActivate: [AuthGuard],
+    data:{
+       role:[environment.admins]
+    },
+    resolve:{
+      lista_agendas_y_alarmas_resuelta:ListaAgendasyAlarmasResueltasResolveService
+
+    }
+
+  },
+
+{
     path: 'usuarios_del_servicio/crear',
     component: CrearUserServicioComponent,
     canActivate: [AuthGuard],
@@ -1554,7 +1600,7 @@ const routes: Routes = [
       tipos_alarmas: ListaTiposAlarmasResolveService,
       clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
 
-    },
+    }
   },
   {
     path: 'modificar-user-servicio/editar/:id',

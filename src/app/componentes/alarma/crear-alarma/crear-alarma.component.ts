@@ -9,6 +9,7 @@ import {Terminal} from "../../../clases/terminal";
 import {Paciente} from "../../../clases/paciente";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CargaTipoAlarmaService} from "../../../servicios/carga-tipo-alarma.service";
+import {Spinner} from "../../../clases/spinner";
 
 @Component({
   selector: 'app-crear-alarma',
@@ -65,8 +66,11 @@ export class CrearAlarmaComponent implements OnInit {
         id_paciente_ucr: this.formCrearA.value.id_paciente_ucr
       }
     }
+    Spinner.mostrarSpiner();
     this.cargaAlarma.nuevaAlarma(data).subscribe(
+
       e => {
+
         this.alertExito()
         this.router.navigate(['/alarmas'])
       },
@@ -89,12 +93,13 @@ export class CrearAlarmaComponent implements OnInit {
         toast.addEventListener('mouseenter', Swal.stopTimer)
         toast.addEventListener('mouseleave', Swal.resumeTimer)
       }
-    })
+    });
 
     Toast.fire({
       icon: 'success',
       title: environment.fraseCrear,
-    })
+    });
+    Spinner.ocultarSpinner();
   }
   //Toast para el alert indicando que hubo algún error en la operación
   alertError() :void {
@@ -114,6 +119,7 @@ export class CrearAlarmaComponent implements OnInit {
       icon: 'error',
       title: environment.fraseErrorCrear
     })
+    Spinner.ocultarSpinner();
   }
   mostratCrearTipo(){
     this.mostrar = !this.mostrar;

@@ -20,7 +20,6 @@ export class BorrarTipoSituacionComponent implements OnInit {
   borrarTipoSituacion(): void {
     this.cargaSituaciones.eliminarTipoSituacion(this.tipos_situaciones).subscribe(
       e => {
-        console.log(this.tipos_situaciones);
         this.router.navigate(['/situaciones']);
       },
       error => {

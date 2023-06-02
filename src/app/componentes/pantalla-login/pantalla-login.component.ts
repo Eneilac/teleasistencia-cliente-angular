@@ -55,12 +55,10 @@ export class PantallaLoginComponent implements OnInit {
         // Hago la peticional profile y  alamceno en localstorage el nombre grupo e imagen
         this.profileService.getProfile()
           .subscribe((resp: IProfileUser[]) => {
-            console.log(resp)
             this.id = resp[0].id
             this.username = resp[0].first_name
             this.userlastname = resp[0].last_name
             this.grupo = resp[0].groups[0].name
-            console.log(this.grupo);
             if (resp[0].imagen == null) {
               this.img = null
             } else {
@@ -98,6 +96,4 @@ export class PantallaLoginComponent implements OnInit {
 
   //variable necesaria para ocultar/mostrar la contraseña
   hide = false;
-
-
 }
